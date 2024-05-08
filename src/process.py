@@ -34,25 +34,22 @@ class ProcessXmls(object):
 
     def __processOneXml(self, pathxml):
         try:
-            with open(pathxml, 'r') as f:
-                dataBuffer = f.read()
-                dataXml = readXml(dataBuffer)
+            dataXml = readXml(pathxml, '<geral>')
 
-                if dataBuffer.find('geral') >= 0:
-                    tagGerarNfseResposta = dataXml['geral']['GerarNfseResposta']
-                    if isinstance(tagGerarNfseResposta, list):
-                        print('\t', len(tagGerarNfseResposta), ' notas')
-                        for nota in tagGerarNfseResposta:
-                            try:
-                                self.__saveXml(nota, pathxml)
-                            except Exception as e:
-                                logger.exception(e)
-                    else:
-                        print('\t 1 nota')
-                        try:
-                            self.__saveXml(tagGerarNfseResposta, pathxml)
-                        except Exception as e:
-                            logger.exception(e)
+            tagGerarNfseResposta = dataXml['geral']['GerarNfseResposta']
+            if isinstance(tagGerarNfseResposta, list):
+                print('\t', len(tagGerarNfseResposta), ' notas')
+                for nota in tagGerarNfseResposta:
+                    try:
+                        self.__saveXml(nota, pathxml)
+                    except Exception as e:
+                        logger.exception(e)
+            else:
+                print('\t 1 nota')
+                try:
+                    self.__saveXml(tagGerarNfseResposta, pathxml)
+                except Exception as e:
+                    logger.exception(e)
         except Exception as e:
             print(e)
 
