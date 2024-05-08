@@ -18,7 +18,7 @@ def readXml(filePath: str, filterText) -> dict:
     """
     try:
         if platform.system() == 'Windows':
-            with open(filePath, 'rb', encoding='latin1') as file:
+            with open(filePath, 'rb') as file:
                 data = file.read()
                 if data.decode('latin1').find(filterText) >= 0 and filterText != '':
                     return xmldict.parse(data)
