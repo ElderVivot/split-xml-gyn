@@ -8,4 +8,4 @@ with open('configuracoes.json', 'r', encoding='utf-8') as f:
 
 ProcessXmls(dataJson['pasta_xml'], dataJson['somente_pasta_com_nome']).process()
 
-os.system('pause > nul')
+os.system('pause')
