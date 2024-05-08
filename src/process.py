@@ -36,20 +36,21 @@ class ProcessXmls(object):
         try:
             dataXml = readXml(pathxml, '<geral>')
 
-            tagGerarNfseResposta = dataXml['geral']['GerarNfseResposta']
-            if isinstance(tagGerarNfseResposta, list):
-                print('\t', len(tagGerarNfseResposta), ' notas')
-                for nota in tagGerarNfseResposta:
+            if dataXml is not None:
+                tagGerarNfseResposta = dataXml['geral']['GerarNfseResposta']
+                if isinstance(tagGerarNfseResposta, list):
+                    print('\t', len(tagGerarNfseResposta), ' notas')
+                    for nota in tagGerarNfseResposta:
+                        try:
+                            self.__saveXml(nota, pathxml)
+                        except Exception as e:
+                            logger.exception(e)
+                else:
+                    print('\t 1 nota')
                     try:
-                        self.__saveXml(nota, pathxml)
+                        self.__saveXml(tagGerarNfseResposta, pathxml)
                     except Exception as e:
                         logger.exception(e)
-            else:
-                print('\t 1 nota')
-                try:
-                    self.__saveXml(tagGerarNfseResposta, pathxml)
-                except Exception as e:
-                    logger.exception(e)
         except Exception as e:
             print(e)
 

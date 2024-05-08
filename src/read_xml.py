@@ -22,11 +22,13 @@ def readXml(filePath: str, filterText) -> dict:
                 data = file.read()
                 if data.decode('latin1').find(filterText) >= 0 and filterText != '':
                     return xmldict.parse(data)
+                return None
         else:
             with open(filePath, 'rb') as file:
                 data = file.read()
                 if data.decode().find(filterText) >= 0 and filterText != '':
                     return xmldict.parse(data)
+                return None
     except Exception as e:
         print(e)
-        return {}
+        return None
