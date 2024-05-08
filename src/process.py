@@ -59,7 +59,7 @@ class ProcessXmls(object):
     def process(self):
         for folder, _, files in os.walk(self.__pathWithXmls):
             for f in files:
-                if folder.find(self.__folderNameFilter) < 0:
+                if folder.find(self.__folderNameFilter) < 0 and self.__folderNameFilter != "":
                     continue
                 print('Lendo arquivo', f'{folder}/{f}')
                 self.__processOneXml(f'{folder}/{f}')
