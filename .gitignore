@@ -25,6 +25,8 @@ tmp/
 .serverless
 
 node_modules/
+logs/
+.venv/
 
 *.xlsx
 *.xls

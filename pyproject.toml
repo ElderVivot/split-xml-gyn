@@ -8,7 +8,11 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 xmltodict = "^0.13.0"
+rocketry = "2.2.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pydantic = "1.10.11"
 
 [build-system]
 requires = ["poetry-core"]
