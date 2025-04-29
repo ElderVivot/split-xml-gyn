@@ -12,7 +12,7 @@ appRocketry = Rocketry()
 
 @appRocketry.task('every 12 hour', name="process_xml_split")
 def processXmlSplit():
-    ProcessXmls(dataJson['pasta_xml'], dataJson['somente_pasta_com_nome']).process()
+    ProcessXmls(dataJson['pasta_xml'], dataJson['somente_pasta_com_nome'], dataJson['pasta_substituir_nome']).process()
 
 
 if __name__ == "__main__":

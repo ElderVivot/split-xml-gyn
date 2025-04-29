@@ -1,4 +1,5 @@
 {
-    "pasta_xml": "data",
-    "somente_pasta_com_nome": "2024-03"
+    "pasta_xml": "data/entradas",
+    "somente_pasta_com_nome": "2024-03",
+    "pasta_substituir_nome": "data/entradas|data/saidas"
 }

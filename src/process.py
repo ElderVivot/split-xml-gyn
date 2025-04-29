@@ -8,9 +8,11 @@ logger = logging.getLogger(__name__)
 
 
 class ProcessXmls(object):
-    def __init__(self, pathWithXmls, folderNameFilter) -> None:
+    def __init__(self, pathWithXmls, folderNameFilter, pathReplaceName) -> None:
         self.__pathWithXmls = pathWithXmls
         self.__folderNameFilter = folderNameFilter
+        self.__pathToReplace = pathReplaceName.split('|')[0]
+        self.__pathDest = pathReplaceName.split('|')[1]
 
     def __saveXml(self, nota, pathxml):
         notaSave = {}
@@ -26,6 +28,10 @@ class ProcessXmls(object):
 
         pathsavexml[-1] = f'{numeroNf}_{codigoVerificao}.xml'
         pathsavexml = '/'.join(pathsavexml)
+        pathsavexml = pathsavexml.replace(self.__pathToReplace, self.__pathDest)
+        pathDest = '/'.join(pathsavexml.split('/')[:-1])
+        if os.path.exists(pathDest) is False:
+            os.makedirs(pathDest)
 
         xml = transformToXml(notaSave)
 
